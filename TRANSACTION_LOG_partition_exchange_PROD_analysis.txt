@@ -1,0 +1,15 @@
+EXCHANGE PARTITION TRANSACTION_LOG
+
+
+Entire process
+----------------------------------------------------------
+Start: 20-FEB-25 04.11.13.562139000 AM
+End: 20-FEB-25 04.46.45.713767000 AM
+
+
+Bottleneck
+----------------------------------------------------------
+alter table CLP_HISTORY.TRANSACTION_LOG_HIST  EXCHANGE PARTITION SYS_P4522 WITH TABLE CLP_TRANSACTIONAL.TRANSACTION_LOG_STG WITHOUT VALIDATION update global indexes
+Start: 20-FEB-25 04.19.01.532358000 AM 
+End: 20-FEB-25 04.46.45.624708000 AM
+
