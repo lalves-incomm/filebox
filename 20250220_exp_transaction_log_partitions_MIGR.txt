@@ -1,0 +1,90 @@
+expdp userid=dev_dba/DB_Arch1tec#123@PMIGCCL directory=EXPORTS dumpfile=MIG_transactions_log_SYS_P20354.dmp logfile=EXP_MIG_transactions_log_SYS_P20354.log tables=CLP_TRANSACTIONAL.TRANSACTION_LOG:SYS_P20354
+
+Export: Release 19.0.0.0.0 - Production on Thu Feb 20 08:38:18 2025
+Version 19.24.0.0.0
+
+Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
+
+Connected to: Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+FLASHBACK automatically enabled to preserve database integrity.
+Starting "DEV_DBA"."SYS_EXPORT_TABLE_01":  userid=dev_dba/********@PMIGCCL directory=EXPORTS dumpfile=MIG_transactions_log_SYS_P20354.dmp logfile=EXP_MIG_transactions_log_SYS_P20354.log tables=CLP_TRANSACTIONAL.TRANSACTION_LOG:SYS_P20354
+Processing object type TABLE_EXPORT/TABLE/TABLE_DATA
+Processing object type TABLE_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS
+Processing object type TABLE_EXPORT/TABLE/STATISTICS/TABLE_STATISTICS
+Processing object type TABLE_EXPORT/TABLE/STATISTICS/MARKER
+Processing object type TABLE_EXPORT/TABLE/PROCACT_INSTANCE
+Processing object type TABLE_EXPORT/TABLE/TABLE
+Processing object type TABLE_EXPORT/TABLE/GRANT/OWNER_GRANT/OBJECT_GRANT
+Processing object type TABLE_EXPORT/TABLE/INDEX/INDEX
+Processing object type TABLE_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
+. . exported "CLP_TRANSACTIONAL"."TRANSACTION_LOG":"SYS_P20354"  13.02 GB 24324844 rows
+ORA-39173: Encrypted data has been stored unencrypted in dump file set.
+Master table "DEV_DBA"."SYS_EXPORT_TABLE_01" successfully loaded/unloaded
+******************************************************************************
+Dump file set for DEV_DBA.SYS_EXPORT_TABLE_01 is:
+  /nfs_ora_staging/exports/CCL/MIG_transactions_log_SYS_P20354.dmp
+Job "DEV_DBA"."SYS_EXPORT_TABLE_01" successfully completed at Thu Feb 20 08:40:02 2025 elapsed 0 00:01:41
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+
+expdp userid=dev_dba/DB_Arch1tec#123@PMIGCCL directory=EXPORTS dumpfile=MIG_transactions_log_SYS_P20646.dmp logfile=EXP_MIG_transactions_log_SYS_P20646.log tables=CLP_TRANSACTIONAL.TRANSACTION_LOG:SYS_P20646
+
+Export: Release 19.0.0.0.0 - Production on Thu Feb 20 08:41:55 2025
+Version 19.24.0.0.0
+
+Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
+
+Connected to: Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+FLASHBACK automatically enabled to preserve database integrity.
+Starting "DEV_DBA"."SYS_EXPORT_TABLE_01":  userid=dev_dba/********@PMIGCCL directory=EXPORTS dumpfile=MIG_transactions_log_SYS_P20646.dmp logfile=EXP_MIG_transactions_log_SYS_P20646.log tables=CLP_TRANSACTIONAL.TRANSACTION_LOG:SYS_P20646
+Processing object type TABLE_EXPORT/TABLE/TABLE_DATA
+Processing object type TABLE_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS
+Processing object type TABLE_EXPORT/TABLE/STATISTICS/TABLE_STATISTICS
+Processing object type TABLE_EXPORT/TABLE/STATISTICS/MARKER
+Processing object type TABLE_EXPORT/TABLE/PROCACT_INSTANCE
+Processing object type TABLE_EXPORT/TABLE/TABLE
+Processing object type TABLE_EXPORT/TABLE/GRANT/OWNER_GRANT/OBJECT_GRANT
+Processing object type TABLE_EXPORT/TABLE/INDEX/INDEX
+Processing object type TABLE_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
+. . exported "CLP_TRANSACTIONAL"."TRANSACTION_LOG":"SYS_P20646"  10.47 GB 18880675 rows
+ORA-39173: Encrypted data has been stored unencrypted in dump file set.
+Master table "DEV_DBA"."SYS_EXPORT_TABLE_01" successfully loaded/unloaded
+******************************************************************************
+Dump file set for DEV_DBA.SYS_EXPORT_TABLE_01 is:
+  /nfs_ora_staging/exports/CCL/MIG_transactions_log_SYS_P20646.dmp
+Job "DEV_DBA"."SYS_EXPORT_TABLE_01" successfully completed at Thu Feb 20 08:43:27 2025 elapsed 0 00:01:28
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+expdp userid=dev_dba/DB_Arch1tec#123@PMIGCCL directory=EXPORTS dumpfile=MIG_transactions_log_SYS_P20890.dmp logfile=EXP_MIG_transactions_log_SYS_P20890.log tables=CLP_TRANSACTIONAL.TRANSACTION_LOG:SYS_P20890
+
+Export: Release 19.0.0.0.0 - Production on Thu Feb 20 08:51:29 2025
+Version 19.24.0.0.0
+
+Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
+
+Connected to: Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+FLASHBACK automatically enabled to preserve database integrity.
+Starting "DEV_DBA"."SYS_EXPORT_TABLE_01":  userid=dev_dba/********@PMIGCCL directory=EXPORTS dumpfile=MIG_transactions_log_SYS_P20890.dmp logfile=EXP_MIG_transactions_log_SYS_P20890.log tables=CLP_TRANSACTIONAL.TRANSACTION_LOG:SYS_P20890
+Processing object type TABLE_EXPORT/TABLE/TABLE_DATA
+Processing object type TABLE_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS
+Processing object type TABLE_EXPORT/TABLE/STATISTICS/TABLE_STATISTICS
+Processing object type TABLE_EXPORT/TABLE/STATISTICS/MARKER
+Processing object type TABLE_EXPORT/TABLE/PROCACT_INSTANCE
+Processing object type TABLE_EXPORT/TABLE/TABLE
+Processing object type TABLE_EXPORT/TABLE/GRANT/OWNER_GRANT/OBJECT_GRANT
+Processing object type TABLE_EXPORT/TABLE/INDEX/INDEX
+Processing object type TABLE_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
+. . exported "CLP_TRANSACTIONAL"."TRANSACTION_LOG":"SYS_P20890"  34.85 GB 67907333 rows
+ORA-39173: Encrypted data has been stored unencrypted in dump file set.
+Master table "DEV_DBA"."SYS_EXPORT_TABLE_01" successfully loaded/unloaded
+******************************************************************************
+Dump file set for DEV_DBA.SYS_EXPORT_TABLE_01 is:
+  /nfs_ora_staging/exports/CCL/MIG_transactions_log_SYS_P20890.dmp
+Job "DEV_DBA"."SYS_EXPORT_TABLE_01" successfully completed at Thu Feb 20 08:54:22 2025 elapsed 0 00:02:52
+
