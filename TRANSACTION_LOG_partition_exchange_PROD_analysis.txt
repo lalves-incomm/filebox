@@ -1,4 +1,6 @@
 ---------------------------------------------------------------------------------------------------------------------------------------------
+Unusable index PK_CALL_LOG_MAST_STG in STG table
+---------------------------------------------------------------------------------------------------------------------------------------------
 TEST IN MIGR - 20250220
 CALL_LOG_MAST PARTITION 2022-02-01 -> 2633 ROWS
 
@@ -40,7 +42,6 @@ Entire process
 	
 
 --------------------------------------------
-index PK_CALL_LOG_MAST_STG was UNUSABLE
 alter index PK_CALL_LOG_MAST_STG rebuild;
 --------------------------------------------
 TEST IN MIGR - 20250220 ---- After rebuild index
@@ -96,7 +97,7 @@ ATTENTION: After the job has finished, the index PK_CALL_LOG_MAST_STG became unu
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
-EXCHANGE PARTITION TRANSACTION_LOG
+EXCHANGE PARTITION TRANSACTION_LOG PROD
 
 
 Entire process
