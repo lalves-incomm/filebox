@@ -15,7 +15,7 @@ where 1 = 1
   --and object_name = 'CALL_LOG_MAST'
   --and trunc(process_run_dttm) = to_date('2023-05-23','yyyy-mm-dd')
   --and process_name = 'ARCHIVE'
-  and l.step_number > 3345
+  and l.step_number > 3358
 order by l.step_number desc;
 
 --- control table
@@ -33,8 +33,8 @@ set exclude_indicator = 'Y';
 -- include only one table
 update DBA_OPERATIONS.ccl_archive_mgmt_ctl
 set exclude_indicator = 'N',
-    retention_period = 35
-where object_name = 'CALL_LOG_MAST';
+    retention_period = 24
+where object_name = 'TRANSACTION_LOG';
 
 
 ---------------------------------------
@@ -42,8 +42,9 @@ where object_name = 'CALL_LOG_MAST';
 select table_owner, table_name, partition_name,
        partition_position, num_rows, high_value
 from all_tab_partitions 
-where table_name = 'CALL_LOG_MAST';
+where table_name = 'TRANSACTION_LOG_HIST';
 -- table_owner = 'CLP_TRANSACTIONAL' 
+24 324 844
 
 select * from all_tab_partitions where table_owner = 'CLP_TRANSACTIONAL' and table_name = 'CALL_LOG_MAST';
 select * from all_tab_partitions where table_owner = 'CLP_HISTORY' and table_name = 'CALL_LOG_MAST_HIST';
@@ -51,14 +52,14 @@ select * from all_tab_partitions where table_owner = 'CLP_HISTORY' and table_nam
 ---- indexes
 select owner, table_owner, table_name, index_name, status, uniqueness, visibility
 from dba_indexes
-where table_name like 'CALL_LOG_MAST%STG'
+where table_name like 'TRANSACTION_LOG_STG'
 order by table_owner, table_name, index_name;
 
-alter index CLP_TRANSACTIONAL.PK_CALL_LOG_MAST_STG rebuild;
+alter index CLP_TRANSACTIONAL.PK_TRAN_LOG_STG rebuild;
 
 -------------------------------------------------------
  -- calculate date string based on the retention period (in months)
-select to_char(add_months(sysdate, -35),'YYYYMMDD') from dual;
+select to_char(add_months(sysdate, -24),'YYYYMMDD') from dual;
 
   
 select * from clp_transactional.call_log_mast partition(SYS_P28467);
@@ -69,9 +70,9 @@ select * from clp_transactional.call_log_mast partition(SYS_P28467);
 --- the high value column is a long datatype
 declare
   p_run_date_in             dba_operations.CCL_ARCHIVE_MGMT_LOG.process_run_dttm%TYPE := sysdate;
-  p_retention_period_in     dba_operations.CCL_ARCHIVE_MGMT_CTL.RETENTION_PERIOD%TYPE := 35;
+  p_retention_period_in     dba_operations.CCL_ARCHIVE_MGMT_CTL.RETENTION_PERIOD%TYPE := 24;
   p_object_owner_in         all_tables.owner%TYPE := 'CLP_TRANSACTIONAL';
-  p_object_name_in          dba_operations.CCL_ARCHIVE_MGMT_CTL.object_name%TYPE := 'CALL_LOG_MAST';
+  p_object_name_in          dba_operations.CCL_ARCHIVE_MGMT_CTL.object_name%TYPE := 'TRANSACTION_LOG';
   
   l_long            LONG;
   l_high_value_date VARCHAR2(32767);
