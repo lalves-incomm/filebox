@@ -1,4 +1,51 @@
 ---------------------------------------------------------------------------------------------------------------------------------------------
+Valid index in STG table
+---------------------------------------------------------------------------------------------------------------------------------------------
+TEST IN MIGR - 20250221
+TRANSACTION_LOG PARTITION SYS_P20354 2023-02-01 -> 24324844 ROWS
+
+Entire process
+21-FEB-25 10.04.45.575427000 AM
+21-FEB-25 02.06.21.668270000 PM
+
+
+	0. ARCHIVE Table Initiate - Generate strings for comparison
+	l_date_str:-20230221***l_where_clause:-INS_DATE < to_date('20230221','YYYYMMDD')
+	21-FEB-25 10.04.45.575427000 AM
+	21-FEB-25 10.04.45.577516000 AM
+	
+	1. ADDING PARTITION TO ARCHIVAL TABLE - CLP_HISTORY.TRANSACTION_LOG_HIST
+	alter table CLP_HISTORY.TRANSACTION_LOG_HIST ADD partition SYS_P20354 VALUES LESS THAN (to_date(20230201, 'YYYYMMDD'))
+	21-FEB-25 10.04.45.584424000 AM
+	21-FEB-25 10.04.45.680707000 AM
+	
+
+	2. EXCHANGE PARTITION FROM CLP_TRANSACTIONAL.TRANSACTION_LOG TABLE TO CLP_TRANSACTIONAL.TRANSACTION_LOG_STG
+	alter table CLP_TRANSACTIONAL.TRANSACTION_LOG  EXCHANGE PARTITION SYS_P20354 WITH TABLE CLP_TRANSACTIONAL.TRANSACTION_LOG_STG WITHOUT VALIDATION update global indexes
+	21-FEB-25 10.04.45.681043000 AM
+	21-FEB-25 12.26.36.752358000 PM
+	
+	3. EXCHANGE PARTITION FROM CLP_TRANSACTIONAL.TRANSACTION_LOG_STG TABLE TO CLP_HISTORY.TRANSACTION_LOG_HIST
+	alter table CLP_HISTORY.TRANSACTION_LOG_HIST  EXCHANGE PARTITION SYS_P20354 WITH TABLE CLP_TRANSACTIONAL.TRANSACTION_LOG_STG WITHOUT VALIDATION update global indexes
+	21-FEB-25 12.26.36.752789000 PM
+	21-FEB-25 02.06.21.255384000 PM
+	
+	4. NUMBER OF ROWS MOVED FROM CLP_TRANSACTIONAL.TRANSACTION_LOG- 24324844 TO CLP_HISTORY.TRANSACTION_LOG_HIST- 24324844
+	select count(num_rows,0) from all_tab_partitions...
+	21-FEB-25 02.06.21.257078000 PM
+	
+	5. DROPPING MAIN TABLE PARTITION CLP_TRANSACTIONAL.TRANSACTION_LOG
+	alter table CLP_TRANSACTIONAL.TRANSACTION_LOG drop partition SYS_P20354 update global indexes
+	21-FEB-25 02.06.21.257277000 PM
+	21-FEB-25 02.06.21.667916000 PM
+	
+	6. ARCHIVE table successful
+	21-FEB-25 02.06.21.668270000 PM
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
 Unusable index PK_CALL_LOG_MAST_STG in STG table
 ---------------------------------------------------------------------------------------------------------------------------------------------
 TEST IN MIGR - 20250220
