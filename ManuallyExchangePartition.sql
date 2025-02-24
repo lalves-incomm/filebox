@@ -51,3 +51,41 @@ delete global indexes
 
 
 --alter table CLP_HISTORY.CALL_LOG_MAST_HIST drop partition SYS_P40938 update global indexes
+
+
+
+-------------------------------------------------------------------------------------------------------------
+-- 
+-- EXCHANGE PARTITIION SYS_P42296 IN TRANSACTION_LOG TABLE (24 324 844 ROWS)
+
+-- 0.A - PRE-REQUIREMENTS
+-- Check indexes on TRANSACTION_LOG, TRANSACTION_LOG_STG and TRANSACTION_LOG_HIST. If necessary rebuild the indexes.
+alter index CLP_TRANSACTIONAL.PK_TRAN_LOG_STG rebuild;
+-- 0.B - Check the number of rows in the partition will be exchanged
+select t.table_name, t.partition_name, t.high_value, t.num_rows, t.*
+from all_tab_partitions t
+where t.table_name = 'TRANSACTION_LOG'
+order by t.partition_position;
+
+
+-- 1 - ADDING PARTITION TO ARCHIVAL TABLE
+alter table CLP_HISTORY.TRANSACTION_LOG_HIST ADD partition SYS_P42296 VALUES LESS THAN (to_date(20230201, 'YYYYMMDD'));
+
+-- 2 - EXCHANGE PARTITION FROM CLP_TRANSACTIONAL TO STG
+alter table CLP_TRANSACTIONAL.TRANSACTION_LOG EXCHANGE PARTITION SYS_P42296 WITH TABLE CLP_TRANSACTIONAL.TRANSACTION_LOG_STG PARALLEL(8) WITHOUT VALIDATION update global indexes; 
+
+-- 2.A - REBUILD INDEXES
+alter index CLP_TRANSACTIONAL.PK_TRAN_LOG_STG rebuild;
+
+-- 3 - EXCHANGE PARTITION FROM STG TABLE TO CLP_HISTORY
+alter table CLP_HISTORY.TRANSACTION_LOG_HIST EXCHANGE PARTITION SYS_P42296 WITH TABLE CLP_TRANSACTIONAL.TRANSACTION_LOG_STG PARALLEL(8)  WITHOUT VALIDATION update global indexes;
+
+-- 4 - CHECK THE NUMBER OF ROWS MOVED FROM CLP_TRANSACTIONAL TO CLP_HISTORY
+select NVL(NUM_ROWS,0) from all_tab_partitions WHERE PARTITION_NAME = 'SYS_P42296' AND TABLE_NAME='TRANSACTION_LOG_HIST';
+
+-- 5 - DROPPING MAIN TABLE PARTITION CLP_TRANSACTIONAL.CALL_LOG_MAST
+alter table CLP_TRANSACTIONAL.TRANSACTION_LOG drop partition SYS_P42296 update global indexes;
+
+-- 
+-------------------------------------------------------------------------------------------------------------
+
