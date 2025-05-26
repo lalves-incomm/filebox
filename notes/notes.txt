@@ -1,0 +1,14 @@
+1Nc0M_5Tg_25-lkukfs
+
+select UPPER(sys_context('USERENV','SERVICE_NAME')) from dual;
+
+C!wU6ikUC!wU6ikU7673$
+C!wU6ikUC!wU6ikU7673$
+
+C!wU6ikU120250108!
+
+VMS	REPORTING	dpfsr-scan.unx.incommtech.net		1530	PPRDFSR_VMS
+VMS	STG			SSFSI-SCAN.FASTCARD.LOCAL			1530	PSTGVMS
+VMS	QTS/STANDBY	srlvmsodb01fv,unx.incommtech.net	1530	PPRDVMS
+
+
